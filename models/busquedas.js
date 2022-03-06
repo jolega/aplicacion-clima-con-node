@@ -8,14 +8,29 @@ class Busquedas{
         //TODO: leer db si existe
     }
 
+    get paramsMapbox() {
+        return {
+            'access_token':`pk.eyJ1Ijoiam9sZWdhIiwiYSI6ImNsMGVrMTdtaTBqb2gzZG84MmdxN3dxeGUifQ.dziqlpdtfQ9-6PDrxGnQFQ`,
+            'language':'es',
+            'limit': 5
+        }
+    }
+
 async ciudad (lugar = ''){
 
+    try{
     // peticion http
-    console.log('ciudad', lugar);
-    const resp = await axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/%20Calarc%C3%A1%2C%20Quind%C3%ADo%20632001%2C%20Colombia.json?language=es&access_token=pk.eyJ1Ijoiam9sZWdhIiwiYSI6ImNsMGVrMTdtaTBqb2gzZG84MmdxN3dxeGUifQ.dziqlpdtfQ9-6PDrxGnQFQ'); // hace la peticion al enpoint
+    const instance = axios.create({
+        baseURL:`https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json`,
+        params : this.paramsMapbox
+    });
+
+    const resp = await instance.get();
     console.log(resp.data) ;
+    }
+    catch{
 
-
+    }
 
 }
 
