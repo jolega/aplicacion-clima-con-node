@@ -1,3 +1,4 @@
+require('dotenv').config()
 const {
     inquirerMenu, 
     pausa,
@@ -5,7 +6,7 @@ const {
     } = require ('./helpers/inquirer.js');
 const Busquedas = require('./models/busquedas.js');
 
-
+//console.log(process.env.MAPBOX_KEY)
 
 const main = async () => {
 
@@ -45,7 +46,6 @@ const main = async () => {
     }while(opt !==0)
 
 }
-
 
 
 
