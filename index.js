@@ -3,6 +3,7 @@ const {
     inquirerMenu, 
     pausa,
     leerInput,
+    listadoLugares,
     } = require ('./helpers/inquirer.js');
 const Busquedas = require('./models/busquedas.js');
 
@@ -20,9 +21,15 @@ const main = async () => {
 
        switch(opt){
            case 1: {
+            // mostrar mensaje
+            const termino = await leerInput('Ciudad: ')
 
-            const lugar = await leerInput('Ciudad: ')
-            await busquedas.ciudad( lugar );
+            // buscar los lugares
+            const lugares = await busquedas.ciudad( termino );
+
+            // seleccionar el lugar
+            const id = listadoLugares(lugares);
+            console.log({id});
 
 
             console.log('\nInformacion de la ciudad\n'.green)

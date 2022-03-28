@@ -26,7 +26,13 @@ async ciudad (lugar = ''){
     });
 
     const resp = await instance.get();
-    console.log(resp.data) ;
+   // console.log(resp.data.features) ;
+    return resp.data.features.map(lugar => ({
+        id: lugar.id,
+        nombre: lugar.place_name,
+        lng: lugar.center[0],
+        lat: lugar.center[1]
+    }));
     }
     catch{
 
