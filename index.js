@@ -28,14 +28,16 @@ const main = async () => {
             const lugares = await busquedas.ciudad( termino );
 
             // seleccionar el lugar
-            const id = listadoLugares(lugares);
-            console.log({id});
+            const id = await listadoLugares(lugares);
+           // console.log({id});
+            const lugarSel = lugares.find(l => l.id === id); // devuelve el primer elemento del arreglo
+          // console.log(lugarSel);
 
 
             console.log('\nInformacion de la ciudad\n'.green)
-            console.log('Ciudad: ',)
-            console.log('Lat: ',)
-            console.log('lng: ',)
+            console.log('Ciudad: ',lugarSel.nombre)
+            console.log('Lat: ',lugarSel.lat)
+            console.log('lng: ',lugarSel.lng)
             console.log('Temperatura: ',)
             console.log('Minima: ',)
             console.log('Maxima: ',)

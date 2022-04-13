@@ -35,7 +35,7 @@ async ciudad (lugar = ''){
     }));
     }
     catch{
-
+        return [];
     }
 
 }
