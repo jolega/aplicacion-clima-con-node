@@ -39,6 +39,22 @@ async ciudad (lugar = ''){
     }
 
 }
+ 
+    async climaLugar (lat, long){
+
+        try{
+
+
+            
+
+        }
+
+        catch(error){
+            console.log(error);
+        }
+    }
+
+
 
 }
 
