@@ -32,15 +32,18 @@ const main = async () => {
            // console.log({id});
             const lugarSel = lugares.find(l => l.id === id); // devuelve el primer elemento del arreglo
           // console.log(lugarSel);
-
+            
+          // selecciona el clima
+          const clima = await busquedas.climaLugar (lugarSel)
 
             console.log('\nInformacion de la ciudad\n'.green)
             console.log('Ciudad: ',lugarSel.nombre)
             console.log('Lat: ',lugarSel.lat)
             console.log('lng: ',lugarSel.lng)
-            console.log('Temperatura: ',)
-            console.log('Minima: ',)
-            console.log('Maxima: ',)
+            console.log('Temperatura: ',clima.temp)
+            console.log('Minima: ',clima.min)
+            console.log('Maxima: ',clima.max)
+            console.log('Como esta el clima: ',clima.desc)
 
            break;
            }   
