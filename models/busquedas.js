@@ -2,7 +2,6 @@ const axios = require('axios').default;
 
 class Busquedas{
 
-    historial = ['colombia','calarca','armenia']
 
     constructor(){
         //TODO: leer db si existe
@@ -27,7 +26,7 @@ class Busquedas{
 async ciudad (lugar = ''){
 
     try{
-    // peticion http
+    // petición http
     const instance = axios.create({
         baseURL:`https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json`,
         params : this.paramsMapbox
@@ -58,16 +57,17 @@ async ciudad (lugar = ''){
     });
 
       const resp = await instance.get();
+      const {weather, main } = resp.data
     //   console.log(`data  ${lat}, ${lng}`)   
     //   console.log('informacion') ;
     //   console.log(resp.data)     
     //   console.log(resp.data.weather.description)
       
             return {
-                 desc: resp.data.weather[0].description,
-                 min: resp.data.main.temp_min,
-                 max: resp.data.main.temp_max,
-                temp: resp.data.main.temp,
+                 desc:      weather[0].description,
+                 min:       main.temp_min,
+                 max:       main.temp_max,
+                temp:       main.temp,
               }
 
          }
@@ -77,6 +77,23 @@ async ciudad (lugar = ''){
          }
     }
 
+    agregarHistorial( lugar= ''){
+        //TODO: prevenir duplicados
+        if(this.historial.includes (lugar.toLocaleLowerCase())){
+            return ;
+        }
+        this.historial.unshift( lugar.toLocaleLowerCase);
+
+        // Grabar en db
+
+        guardarDb(){
+
+        }
+        
+        leerDb(){
+
+        }
+    }
 
 
 }

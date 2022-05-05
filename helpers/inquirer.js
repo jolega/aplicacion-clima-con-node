@@ -22,7 +22,7 @@ const preguntas= [
         ]
             
     }
-];
+]; 
 
 const inquirerMenu = async () => {
 
@@ -71,21 +71,25 @@ const leerInput = async(message) => {
     return desc
 }
 
+/**
+ * It takes an array of places and returns an array of objects with the place's id and name.
+ * @param [lugares] - The array of places to be displayed.
+ */
 const listadoLugares = async (lugares = []) =>{
 
 
     const choices = lugares.map((lugar, i )=> {
-
-        const idx =`${ i + 1 }.`.green;
+        const idx =`${ i+2 }.`.green;
         return {
             value: lugar.id,
             name: `${ idx } ${ lugar.nombre }`
         }
+      
     })
 
     choices.unshift({
-        value: '0',
-        name: '0.'.green + 'Cancelar'
+        value: '1',
+        name: '1. '.green + 'Cancelar'
     })
     const preguntas = [
         {
