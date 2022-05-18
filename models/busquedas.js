@@ -1,7 +1,6 @@
 const fs = require('fs') ;
 const axios = require('axios').default ;
 
-
 class Busquedas{
 
     historial = [] ;
@@ -9,7 +8,17 @@ class Busquedas{
 
     constructor(){
         //TODO: leer db si existe
+        this.leerDb();
     }
+  // capitalizando texto 
+    get historialCapitalizado() {
+        return  this.historial.map( lugar => {
+
+            let palabras = lugar.split(' ') ;
+            palabras = palabras.map ( p => p[0].toUpperCase()  + p.substring(1)) ;
+            return palabras.join (' ')
+    });
+     } ;
 
     get paramsMapbox() {
         return {
@@ -100,9 +109,19 @@ async ciudad (lugar = ''){
         fs.writeFileSync(this.dbPath, JSON.stringify( payload )) ;
 
     }
-    
+    //leer json
     leerDb(){
 
+        // validar si existe el Archivo 
+            if(!fs.existsSync(this.dbPath)){
+                return null;
+            }
+        // consulta la información 
+            const info =  fs.readFileSync(this.dbPath, {encoding: 'utf-8'});
+            const data = JSON.parse(info);  // devuelve un arreglo de objetos
+            console.log(data.historial)
+            this.historial = data.historial
+         //   return data ;
     }
 
 
